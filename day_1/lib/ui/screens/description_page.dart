@@ -17,10 +17,12 @@ class _DescriptionPageState extends State<DescriptionPage> {
 
   @override
   Widget build(BuildContext context) {
+    final brightness = Theme.of(context).brightness;
+    final isDarkMode = brightness == Brightness.dark;
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
-          color: Theme.of(context).primaryColor  
+          color: Theme.of(context).scaffoldBackgroundColor,
           ),
         child: Column(
           children: [
@@ -41,14 +43,14 @@ class _DescriptionPageState extends State<DescriptionPage> {
                       height: 42,
                       width: 42,
                       decoration: BoxDecoration(
-                        color: Colors.white.withAlpha(51), // 20% transparent white
+                        color: Colors.white.withAlpha(51), 
                         borderRadius: BorderRadius.circular(4),
                       ),
                       child: IconButton(
                         onPressed: () {
                           Navigator.pop(context);
                         },
-                        icon: Icon(Icons.arrow_back, color: Colors.white, size: 30),
+                        icon: Icon(Icons.arrow_back, color: (isDarkMode)? Colors.white : Colors.black, size: 30),
                       ),
                     ),
                   ),
@@ -57,9 +59,9 @@ class _DescriptionPageState extends State<DescriptionPage> {
                     right: 16,
                     child: Row(
                       children: [
-                        Icon(Icons.star_border, color: Colors.white, size: 30),
+                        Icon(Icons.star_border, color: (isDarkMode)? Colors.white : Colors.black, size: 30),
                         SizedBox(width: 16),
-                        Icon(Icons.share, color: Colors.white, size: 30),
+                        Icon(Icons.share, color: (isDarkMode)? Colors.white : Colors.black, size: 30),
                       ],
                     ),
                   ),
@@ -84,7 +86,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
                                 widget.title,
                                 softWrap: true,
                                 style: TextStyle(
-                                  color: Colors.white,
+                                  color:(isDarkMode)? Colors.white : Colors.black,
                                   fontSize: 24,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -106,7 +108,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
                         Text(
                           '\$${widget.price.toStringAsFixed(2)}', 
                           style: TextStyle(
-                            color: Colors.white,
+                            color: (isDarkMode)? Colors.white : Colors.black,
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
@@ -133,7 +135,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
                     SizedBox(height: 16),
                     Text(
                       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat voluptpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamco.',
-                      style: TextStyle(color: Colors.white, fontSize: 16),
+                      style: TextStyle(color: (isDarkMode)? Colors.white : Colors.black, fontSize: 16),
                     ),
                     Spacer(),
                     Row(
@@ -141,13 +143,13 @@ class _DescriptionPageState extends State<DescriptionPage> {
                       children: [
                         Container(
                           decoration: BoxDecoration(
-                            color: Colors.white.withAlpha(51), // 20% transparent white
+                            color: (isDarkMode)? Colors.white.withAlpha(51) : Colors.black.withAlpha(51),
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: Row(
                             children: [
                               IconButton(
-                                icon: Icon(Icons.remove, color: Colors.white),
+                                icon: Icon(Icons.remove, color: (isDarkMode)? Colors.white : Colors.black),
                                 onPressed: () {
                                   if (quantity > 1) {
                                     setState(() {
@@ -158,10 +160,10 @@ class _DescriptionPageState extends State<DescriptionPage> {
                               ),
                               Text(
                                 '$quantity',
-                                style: TextStyle(color: Colors.white, fontSize: 18),
+                                style: TextStyle(color: (isDarkMode)? Colors.white : Colors.black, fontSize: 18),
                               ),
                               IconButton(
-                                icon: Icon(Icons.add, color: Colors.white),
+                                icon: Icon(Icons.add, color: (isDarkMode)? Colors.white : Colors.black),
                                 onPressed: () {
                                   setState(() {
                                     quantity++;

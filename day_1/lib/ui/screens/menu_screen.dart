@@ -42,7 +42,7 @@ class MenuScreen extends StatelessWidget {
       'rating': 4.1,
     },
     {
-      'imageUrl': 'assets/images/still-life-delicious-american-hamburger.jpg',
+      'imageUrl': 'assets/images/flat-lay-meringue-cake-with-cinnamon-citrus.jpg',
       'title': 'Exotic Fruit Salad',
       'subtitle': 'Lorem ipsum dolor sit amet',
       'price': 9.99,
@@ -52,8 +52,10 @@ class MenuScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final brightness = Theme.of(context).brightness;
+    final isDarkMode = brightness == Brightness.dark;
     return Scaffold(
-      backgroundColor: Colors.grey[900], 
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       bottomNavigationBar: BottomNavBar(selectedIndex: 1,),
       body: SafeArea(
         child: Padding(
@@ -72,16 +74,16 @@ class MenuScreen extends StatelessWidget {
                       height: 42,
                       width: 42,
                       decoration: BoxDecoration(
-                        color: Colors.white.withAlpha(51),
+                        color:(isDarkMode)? Colors.white.withAlpha(51): Colors.black.withAlpha(51),
                         borderRadius: BorderRadius.circular(4),
                       ),
-                      child: Icon(Icons.search, color: Colors.white),
+                      child: Icon(Icons.search, color: (isDarkMode)? Colors.white : Colors.black),
                     ),
                     Row(
                       children: [
                         Text(
                           'Hello, User!',
-                          style: TextStyle(color: Colors.white, fontSize: 18),
+                          style: TextStyle(color:(isDarkMode)? Colors.white :Colors.black, fontSize: 18),
                         ),
                         const SizedBox(width: 12.0),
                         ClipRRect(

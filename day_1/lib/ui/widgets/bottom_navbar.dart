@@ -1,5 +1,6 @@
 import 'package:day_1/ui/screens/home_screen.dart';
 import 'package:day_1/ui/screens/menu_screen.dart';
+import 'package:day_1/ui/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
 
 class BottomNavBar extends StatefulWidget {
@@ -29,7 +30,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
   }
 
   void _navigateTo(int index) {
-    if (_selectedIndex == index) return; 
+    if (_selectedIndex == index) return;
     setState(() {
       _selectedIndex = index;
     });
@@ -44,7 +45,13 @@ class _BottomNavBarState extends State<BottomNavBar> {
       case 1:
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) =>  MenuScreen()),
+          MaterialPageRoute(builder: (context) => MenuScreen()),
+        );
+        break;
+      case 4:
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const ProfileScreen()),
         );
         break;
     }
@@ -52,6 +59,10 @@ class _BottomNavBarState extends State<BottomNavBar> {
 
   @override
   Widget build(BuildContext context) {
+
+    final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
+
     return Padding(
       padding: const EdgeInsets.only(bottom: 12.0, top: 4),
       child: Row(
@@ -63,8 +74,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
             onTap: () => _navigateTo(index),
             child: Icon(
               _icons[index],
-              size: 28,
-              color: isSelected ? Colors.white : Colors.grey,
+              size: isSelected? 30 : 26,
+              color: isSelected ? (isDark? Colors.white : Colors.black): Colors.grey,
             ),
           );
         }),
