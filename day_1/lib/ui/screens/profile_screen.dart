@@ -9,15 +9,35 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
-
+    final brightness = Theme.of(context).brightness;
+    final isDarkMode = brightness == Brightness.dark;
     return Scaffold(
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
-          children: const [
+          children: [
             DrawerHeader(
-              decoration: BoxDecoration(color: Colors.black),
-              child: Text('Profile Drawer', style: TextStyle(color: Colors.white)),
+              decoration: BoxDecoration(color: (isDarkMode)?  Colors.black : Colors.white),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(height: 30),
+                      Text('Username', style: TextStyle(color: (isDarkMode) ? Colors.white : Colors.black
+                      , fontSize: 18, fontWeight: FontWeight.bold)),
+                      Text('123-Street, City', style: TextStyle(color: (isDarkMode) ? Colors.white : Colors.black, fontSize: 14)),
+                      Text('user@example.com', style: TextStyle(color: (isDarkMode) ? Colors.white : Colors.black, fontSize: 14)),
+                    ],
+                  ),
+                  const CircleAvatar(
+                    radius: 50,
+                    backgroundImage: AssetImage('assets/images/handsome-man-standing-front-city-building.jpg'),
+                  ),
+                ],
+              )
             ),
           ],
         ),
