@@ -1,5 +1,5 @@
 import 'package:day_1/ui/widgets/bottom_navbar.dart';
-import 'package:day_1/ui/widgets/meal_cateogory_provider.dart';
+import 'package:day_1/ui/widgets/meal_category_row.dart';
 import 'package:day_1/ui/widgets/popular_card.dart';
 import 'package:day_1/ui/widgets/promo_card.dart';
 import 'package:day_1/ui/widgets/see_more_button.dart';

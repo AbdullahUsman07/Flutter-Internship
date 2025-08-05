@@ -19,7 +19,7 @@ class MenuItemCard extends StatefulWidget {
   });
 
   @override
-  _MenuItemCardState createState() => _MenuItemCardState();
+  State<MenuItemCard> createState() => _MenuItemCardState();
 }
 
 class _MenuItemCardState extends State<MenuItemCard> {

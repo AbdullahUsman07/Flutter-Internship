@@ -66,7 +66,6 @@ class _DescriptionPageState extends State<DescriptionPage> {
                 ],
               ),
             ),
-            // Expanded section for details
             Expanded(
               child: Container(
                 padding: EdgeInsets.all(16.0),
@@ -116,7 +115,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
                     ),
                     SizedBox(height: 16),
                     Wrap(
-                      spacing: 4, // Space between items
+                      spacing: 4, 
                       crossAxisAlignment: WrapCrossAlignment.center,
                       children: [
                         Icon(Icons.star, color: Colors.amber[700], size: 20),

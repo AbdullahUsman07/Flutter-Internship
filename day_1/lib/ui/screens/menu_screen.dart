@@ -3,7 +3,6 @@ import 'package:day_1/ui/widgets/menu_item_card.dart';
 import 'package:flutter/material.dart';
 
 class MenuScreen extends StatelessWidget {
-  // List of image URLs and item details
   final List<Map<String, dynamic>> menuItems = [
     {
       'imageUrl': 'assets/images/still-life-delicious-american-hamburger.jpg',
@@ -54,13 +53,13 @@ class MenuScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[900], // Add dark background
+      backgroundColor: Colors.grey[900], 
       bottomNavigationBar: BottomNavBar(selectedIndex: 1,),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(
             horizontal: 8.0,
-          ), // Reduced padding to allow more grid space
+          ), 
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -99,22 +98,18 @@ class MenuScreen extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 40.0),
-                // Top Image with Bottom-Centered Text Overlay
                 Stack(
                   children: [
-                    // Enlarged Image Banner
                     SizedBox(
                       height:
                           MediaQuery.of(context).size.height *
-                          0.45, // increased from 0.35
+                          0.45,
                       width: double.infinity,
                       child: Image.asset(
                         'assets/images/composition-noodles-bowl.jpg',
                         fit: BoxFit.cover,
                       ),
                     ),
-
-                    // Gradient Overlay
                     Container(
                       height: MediaQuery.of(context).size.height * 0.45,
                       decoration: BoxDecoration(
@@ -128,8 +123,6 @@ class MenuScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-
-                    // Text Overlay at Bottom Center
                     Positioned(
                       bottom: 30,
                       left: 0,
@@ -179,12 +172,12 @@ class MenuScreen extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
                   child: GridView.builder(
                     physics:
-                        NeverScrollableScrollPhysics(), // Disable GridView scrolling
+                        NeverScrollableScrollPhysics(), 
                     shrinkWrap: true,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       childAspectRatio:
-                          0.8, // Adjusted for better card proportions
+                          0.8, 
                       crossAxisSpacing: 10,
                       mainAxisSpacing: 10,
                     ),

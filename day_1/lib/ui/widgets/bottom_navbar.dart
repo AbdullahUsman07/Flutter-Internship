@@ -19,6 +19,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
     Icons.shopping_cart_rounded,
     Icons.menu_book_outlined,
     Icons.star_border_outlined,
+    Icons.person_outline_rounded,
   ];
 
   @override
@@ -28,7 +29,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
   }
 
   void _navigateTo(int index) {
-    if (_selectedIndex == index) return; // No navigation if already selected
+    if (_selectedIndex == index) return; 
     setState(() {
       _selectedIndex = index;
     });
@@ -46,7 +47,6 @@ class _BottomNavBarState extends State<BottomNavBar> {
           MaterialPageRoute(builder: (context) =>  MenuScreen()),
         );
         break;
-      // Add more routes when needed
     }
   }
 
