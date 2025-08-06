@@ -1,4 +1,5 @@
 
+import 'package:day_3/pages/intro_page.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
@@ -114,7 +115,7 @@ class LandingPage extends StatelessWidget {
               left: 161,
               child: InkWell(
                 onTap: () {
-                  print('Tapped');
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => IntroPage()));
                 },
                 child: Container(
                   height: 66,
