@@ -1,4 +1,5 @@
 import 'package:day_3/pages/login_page.dart';
+import 'package:day_3/pages/registration_page.dart';
 import 'package:day_3/widgets/icon_elipse.dart';
 import 'package:day_3/widgets/navigate_button.dart';
 import 'package:day_3/widgets/theme_creator.dart';
@@ -12,7 +13,7 @@ class IntroPage extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          themeCreator(),
+          themeCreator(context),
           iconElipse(),
           Positioned(
             top: 195,
@@ -120,7 +121,10 @@ class IntroPage extends StatelessWidget {
                   ),
                   TextButton(
                     onPressed: () {
-                      // Navigate to sign up page
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (context) => RegistrationPage()),
+                      );
                     },
                     child: Text(
                       'Register Now!',

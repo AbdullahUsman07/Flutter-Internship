@@ -1,11 +1,10 @@
 
-
 import 'package:flutter/material.dart';
 
-Widget themeCreator() {
+Widget themeCreator(BuildContext context) {
   return Container(
-    height: double.infinity,
-    width: double.infinity,
+    height: MediaQuery.of(context).size.height,
+    width: MediaQuery.of(context).size.width,
     decoration: BoxDecoration(
       gradient: LinearGradient(
         begin: Alignment.topCenter,

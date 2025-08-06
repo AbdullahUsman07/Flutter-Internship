@@ -1,3 +1,4 @@
+import 'package:day_3/pages/registration_page.dart';
 import 'package:day_3/widgets/custom_form_feild.dart';
 import 'package:day_3/widgets/icon_elipse.dart';
 import 'package:day_3/widgets/navigate_button.dart';
@@ -22,7 +23,7 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       body: Stack(
         children: [
-          themeCreator(),
+          themeCreator(context),
           iconElipse(),
           Positioned(
             top: 180,
@@ -86,26 +87,18 @@ class _LoginPageState extends State<LoginPage> {
           Positioned(
             top: 530,
             left: 40,
-            child: SizedBox(
-              width: 320,
-              height: 60,
-              child: CustomFormFeild(
-                title: 'Email',
-                controller: _emailController,
-              ),
+            child: CustomFormFeild(
+              title: 'Email',
+              controller: _emailController,
             ),
           ),
           Positioned(
             top: 620,
             left: 40,
-            child: SizedBox(
-              width: 320,
-              height: 60,
-              child: CustomFormFeild(
-                title: 'Password',
-                controller: _passwordController,
-                isPass: true,
-              ),
+            child: CustomFormFeild(
+              title: 'Password',
+              controller: _passwordController,
+              isPass: true,
             ),
           ),
           Positioned(
@@ -147,7 +140,10 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     recognizer: TapGestureRecognizer()
                       ..onTap = () {
-                        // Handle registration navigation
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (context) => RegistrationPage()),
+                        );
                       },
                   ),
                 ],
