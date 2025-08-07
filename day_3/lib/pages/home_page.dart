@@ -1,5 +1,6 @@
 import 'package:day_3/data/menu.dart';
 import 'package:day_3/pages/cart_page.dart';
+import 'package:day_3/pages/search_page.dart';
 import 'package:day_3/widgets/cuisine_list.dart';
 import 'package:day_3/widgets/restaurant_list.dart';
 import 'package:day_3/widgets/theme_creator.dart';
@@ -57,7 +58,16 @@ class HomePage extends StatelessWidget {
                         ],
                       ),
                       SizedBox(height: 40),
-                      CustomSearchBar(searchController: _searchController),
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => SearchPage()));
+                        },
+                        child: IgnorePointer(
+                          child: CustomSearchBar(
+                            searchController: _searchController, 
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
