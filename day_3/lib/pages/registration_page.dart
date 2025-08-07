@@ -1,5 +1,6 @@
 import 'package:day_3/pages/login_page.dart';
 import 'package:day_3/widgets/custom_form_feild.dart';
+import 'package:day_3/widgets/drop_down_feild.dart';
 import 'package:day_3/widgets/navigate_button.dart';
 import 'package:day_3/widgets/theme_creator.dart';
 import 'package:flutter/gestures.dart';
@@ -18,9 +19,18 @@ class _RegistrationPageState extends State<RegistrationPage> {
   final _passwordController = TextEditingController();
   final _reenterPasswordController = TextEditingController();
   final _phoneNumberController = TextEditingController();
-  final _favCusineController = TextEditingController();
+  final _cuisineController = TextEditingController();
+  final _restaurantController = TextEditingController();
   final _allergyController = TextEditingController();
-  final _prefRestaurantController = TextEditingController();
+
+
+  final List<String> cuisines = ["Italian", "Chinese", "Desi", "Mexican","Fast-Food","Sea-Food"];
+  final List<String> restaurants = ["KFC", "Subway", "Pizza Hut","Naseeb Biryani","Quetta Cafe"];
+  final List<String> allergies = ["Gluten", "Nuts", "Seafood", "Lactose"];
+
+  List<String> selectedCuisines = [];
+  List<String> selectedRestaurants = [];
+  List<String> selectedAllergies = [];
 
   @override
   Widget build(BuildContext context) {
@@ -127,25 +137,49 @@ class _RegistrationPageState extends State<RegistrationPage> {
               Positioned(
                 top: 520,
                 left: 40,
-                child: CustomFormFeild(
+                child: DropDownFeild(
                   title: 'Favourite Cuisine',
-                  controller: _favCusineController,
+                  options: cuisines,
+                  selectedOptions: selectedCuisines,
+                  controller: _cuisineController,
+                  onSelectionChanged: (value) {
+                    setState(() {
+                      selectedCuisines = value;
+                      _cuisineController.text = selectedCuisines.join(', ');
+                    });
+                  },
                 ),
               ),
               Positioned(
                 top: 580,
                 left: 40,
-                child: CustomFormFeild(
-                  title: 'Preferred Restaurant',
-                  controller: _prefRestaurantController,
+                child: DropDownFeild(
+                  title: 'Preferred Restaurant', 
+                  options: restaurants,
+                  selectedOptions: selectedRestaurants,
+                  controller: _restaurantController,
+                  onSelectionChanged: (value) {
+                    setState(() {
+                      selectedRestaurants = value;
+                      _restaurantController.text = selectedRestaurants.join(', ');
+                    });
+                  },
                 ),
               ),
               Positioned(
                 top: 640,
                 left: 40,
-                child: CustomFormFeild(
+                child: DropDownFeild(
                   title: 'Allergy Information',
+                  options: allergies,
+                  selectedOptions: selectedAllergies,
                   controller: _allergyController,
+                  onSelectionChanged: (value) {
+                    setState(() {
+                      selectedAllergies = value;
+                      _allergyController.text = selectedAllergies.join(', ');
+                    });
+                  },
                 ),
               ),
               Positioned(
@@ -158,13 +192,13 @@ class _RegistrationPageState extends State<RegistrationPage> {
               ),
               Positioned(
                 top: 765,
-                left: 100,
+                left: 90,
                 child: Text.rich(
                   TextSpan(
                     text: 'Already have an account?',
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 12,
+                      fontSize: 15,
                       fontWeight: FontWeight.w500,
                     ),
                     children: [
@@ -172,7 +206,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         text: 'Login',
                         style: TextStyle(
                           color: Color.fromRGBO(255, 79, 0, 1),
-                          fontSize: 12,
+                          fontSize: 15,
                           fontWeight: FontWeight.w700,
                         ),
                         recognizer: TapGestureRecognizer()
@@ -190,7 +224,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 ),
               ),
               Positioned(
-                top: 795,
+                top: 805,
                 left: 97,
                 child: Text.rich(
                   TextSpan(

@@ -7,7 +7,7 @@ class CustomFormFeild extends StatefulWidget {
     required this.title,
     required this.controller,
     this.keyboardType = TextInputType.text,
-    this.obscureText = false,
+    this.initialObscureText = false,
     this.onChanged,
     this.errorText,
     this.isPass = false,
@@ -16,16 +16,26 @@ class CustomFormFeild extends StatefulWidget {
   final String title;
   final TextInputType? keyboardType;
   final TextEditingController? controller;
-  bool obscureText;
+  final bool initialObscureText; 
   final String? errorText;
   final void Function(String)? onChanged;
   final bool isPass;
 
   @override
   State<CustomFormFeild> createState() => _CustomFormFeildState();
+
+
 }
 
 class _CustomFormFeildState extends State<CustomFormFeild> {
+  bool _obscureText = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _obscureText = widget.isPass ? true : widget.initialObscureText;
+  }
+  
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -33,23 +43,27 @@ class _CustomFormFeildState extends State<CustomFormFeild> {
       width: 320,
       child: TextFormField(
         onChanged: widget.onChanged,
-        obscureText: widget.obscureText,
+        obscureText: _obscureText,
         controller: widget.controller,
         keyboardType: widget.keyboardType,
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 16,
+        ),
         decoration: InputDecoration(
           suffixIcon: widget.isPass
               ? InkWell(
-                  child: widget.obscureText
+                  child: _obscureText
                       ? Icon(
-                          Icons.visibility_off,
+                          Icons.visibility,
                           color: Color.fromRGBO(255, 79, 0, 1),
                         )
                       : Icon(
-                          Icons.visibility,
+                          Icons.visibility_off,
                           color: Color.fromRGBO(255, 79, 0, 1),
                         ),
                   onTap: () => setState(() {
-                    widget.obscureText = !widget.obscureText;
+                    _obscureText = !_obscureText;
                   }),
                 )
               : null,

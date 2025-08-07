@@ -108,7 +108,7 @@ class _LoginPageState extends State<LoginPage> {
               'Forgot Password',
               style: TextStyle(
                 color: Color.fromRGBO(255, 79, 0, 1),
-                fontSize: 12,
+                fontSize: 14,
                 fontWeight: FontWeight.w500,
               ),
             ),
