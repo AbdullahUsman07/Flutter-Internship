@@ -1,3 +1,4 @@
+import 'package:day_3/pages/home_page.dart';
 import 'package:day_3/pages/registration_page.dart';
 import 'package:day_3/widgets/custom_form_feild.dart';
 import 'package:day_3/widgets/icon_elipse.dart';
@@ -117,7 +118,12 @@ class _LoginPageState extends State<LoginPage> {
           Positioned(
             top: 730,
             left: 50,
-            child: NavigateButton(title: 'Login', onPressed: () {}),
+            child: NavigateButton(title: 'Login', onPressed: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => HomePage()),
+              );
+            }),
           ),
           Positioned(
             top: 785,

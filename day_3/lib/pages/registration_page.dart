@@ -1,3 +1,4 @@
+import 'package:day_3/pages/home_page.dart';
 import 'package:day_3/pages/login_page.dart';
 import 'package:day_3/widgets/custom_form_feild.dart';
 import 'package:day_3/widgets/drop_down_feild.dart';
@@ -187,7 +188,12 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 left: 50,
                 child: NavigateButton(
                   title: 'Create Account',
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => HomePage()),
+                    );
+                  },
                 ),
               ),
               Positioned(

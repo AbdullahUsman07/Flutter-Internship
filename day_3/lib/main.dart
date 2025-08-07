@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(   
       debugShowCheckedModeBanner: false,
       title: 'Modern Food-App',
-      home: HomePage(),
+      home: LandingPage(),
     );
   }
 }
