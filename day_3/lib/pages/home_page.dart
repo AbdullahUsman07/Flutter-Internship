@@ -1,4 +1,5 @@
 import 'package:day_3/data/menu.dart';
+import 'package:day_3/pages/cart_page.dart';
 import 'package:day_3/widgets/cuisine_list.dart';
 import 'package:day_3/widgets/restaurant_list.dart';
 import 'package:day_3/widgets/theme_creator.dart';
@@ -41,7 +42,11 @@ class HomePage extends StatelessWidget {
                           SizedBox(
                             width: 30,
                             height: 30,
-                            child: Image.asset('assets/vectors/heart-icon.png'),
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => CartPage()));
+                              },
+                              child: Image.asset('assets/vectors/heart-icon.png')),
                           ),
                           SizedBox(width: 20),
                           Icon(
