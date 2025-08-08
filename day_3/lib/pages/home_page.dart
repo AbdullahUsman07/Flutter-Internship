@@ -1,5 +1,6 @@
 import 'package:day_3/data/menu.dart';
 import 'package:day_3/pages/cart_page.dart';
+import 'package:day_3/pages/favourite_page.dart';
 import 'package:day_3/pages/search_page.dart';
 import 'package:day_3/widgets/cuisine_list.dart';
 import 'package:day_3/widgets/drawer_widget.dart';
@@ -67,7 +68,7 @@ class HomePage extends StatelessWidget {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => CartPage(),
+                                      builder: (context) => FavouritePage(),
                                     ),
                                   );
                                 },
