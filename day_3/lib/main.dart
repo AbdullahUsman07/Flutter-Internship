@@ -2,8 +2,9 @@
 
 
 
+
+import 'package:day_3/pages/home_page.dart';
 import 'package:day_3/pages/ladning_page.dart';
-import 'package:day_3/pages/search_page.dart';
 import 'package:flutter/material.dart';
 
 void main(){

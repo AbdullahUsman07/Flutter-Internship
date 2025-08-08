@@ -43,7 +43,7 @@ class CartPage extends StatelessWidget {
             left: 40,
             child: SizedBox(
               width: 300,
-              height: 250,
+              height: 250,   
               child: Column(
                 children: [
                   Text(
