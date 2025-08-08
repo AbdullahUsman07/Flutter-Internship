@@ -1,4 +1,5 @@
-import 'package:day_3/pages/home_page.dart';
+
+import 'package:day_3/pages/order_page.dart';
 import 'package:day_3/widgets/theme_creator.dart';
 import 'package:flutter/material.dart';
 
@@ -64,7 +65,7 @@ class CartPage extends StatelessWidget {
                   ElevatedButton(
                     onPressed: () {
                       Navigator.pushReplacement(context, 
-                      MaterialPageRoute(builder: (context) => HomePage()));
+                      MaterialPageRoute(builder: (context) => OrderPage()));
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color.fromRGBO(255, 79, 0, 1),
