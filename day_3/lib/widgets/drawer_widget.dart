@@ -1,7 +1,8 @@
 
 
 
-  import 'package:day_3/widgets/icon_text._widget.dart';
+  import 'package:day_3/pages/profile_page.dart';
+import 'package:day_3/widgets/icon_text._widget.dart';
 import 'package:flutter/material.dart';
 
 Container customDrawer(BuildContext context) {
@@ -40,7 +41,11 @@ Container customDrawer(BuildContext context) {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(height: 40,),
-                    iconAndText('assets/vectors/prof.png', 'View Profile'),
+                    InkWell(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => ProfilePage()));
+                      },
+                      child: iconAndText('assets/vectors/prof.png', 'View Profile')),
                     const SizedBox(height: 40,),
                     iconAndText('assets/vectors/voucher.png', 'Vouchers'),
                     const SizedBox(height: 40,),
