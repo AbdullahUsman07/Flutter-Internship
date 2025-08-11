@@ -1,6 +1,6 @@
 
 
-import 'package:day_3/pages/ladning_page.dart';
+import 'package:day_3/pages/cart_screen.dart';
 import 'package:flutter/material.dart';
 
 void main(){
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(   
       debugShowCheckedModeBanner: false,
       title: 'Modern Food-App',
-      home: LandingPage(),
+      home: CartScreen(),
     );
   }
 }
