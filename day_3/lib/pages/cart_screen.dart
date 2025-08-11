@@ -1,3 +1,4 @@
+import 'package:day_3/pages/checkout_page.dart';
 import 'package:day_3/pages/order_page.dart';
 import 'package:day_3/widgets/calorie_info.dart';
 import 'package:day_3/widgets/menu_component.dart';
@@ -170,16 +171,24 @@ class _CartScreenState extends State<CartScreen> {
             Positioned(
               top: 770,
               left: 75,
-              child: Container(
-                width: 239,height: 51,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Color.fromRGBO(255, 79, 0, 1)
-                ),
-                child: Center(
-                  child: Text('Enter payment method & address', style: TextStyle(fontSize: 12,color: Colors.white, fontWeight: FontWeight.w600),),
-                ),
-                )),
+              child: InkWell(
+                onTap: (){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => CheckoutPage()),
+                  );
+                },
+                child: Container(
+                  width: 239,height: 51,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Color.fromRGBO(255, 79, 0, 1)
+                  ),
+                  child: Center(
+                    child: Text('Enter payment method & address', style: TextStyle(fontSize: 12,color: Colors.white, fontWeight: FontWeight.w600),),
+                  ),
+                  ),
+              )),
           ],
         ),
       ),

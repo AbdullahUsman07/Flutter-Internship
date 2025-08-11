@@ -2,14 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class QuantityController extends GetxController {
-  var quantity = 1.obs;
+  var quantity = 1.obs; 
+  double itemPrice = 300; 
+  double platformFee = 14.49;
+  double deliveryCharges = 0; 
 
   void setQuantity(int value) {
     quantity.value = value;
   }
- 
- // this is the getter that returns the selected quantity which we will use to calculate the total ammount
+
+  // ✅ Reactive getter for selected quantity
   int get selectedQuantity => quantity.value;
+
+  // ✅ Subtotal (reactive)
+  double get subtotal => itemPrice * selectedQuantity;
+
+  // ✅ Total (reactive)
+  double get totalWithFee => subtotal + platformFee + deliveryCharges;
 
 }
 

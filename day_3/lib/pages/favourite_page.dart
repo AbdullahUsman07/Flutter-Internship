@@ -1,3 +1,5 @@
+
+import 'package:day_3/pages/order_page.dart';
 import 'package:day_3/widgets/restaurant_list.dart';
 import 'package:day_3/widgets/theme_creator.dart';
 import 'package:flutter/material.dart';
@@ -42,12 +44,16 @@ class FavouritePage extends StatelessWidget {
             Positioned(
               top: 100,
               left: 40,
-              child: CustomButton(onPressed: () {}, title: 'Restaurants'),
+              child: CustomButton(onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => OrderPage()));
+              }, title: 'Restaurants'),
             ),
             Positioned(
               top: 100,
               left: 220,
-              child: CustomButton(onPressed: () {}, title: 'Cuisines'),
+              child: CustomButton(onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => OrderPage()));
+              }, title: 'Cuisines'),
             ),
             Positioned(
               top: 170,
