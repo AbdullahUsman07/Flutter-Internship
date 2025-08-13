@@ -27,7 +27,7 @@ For **state management**, I used **GetX**, both as a new learning experience and
 
 ## 📱 APK File
 You can download the APK from the link below:  
-[**Download APK**](week_2/day_7/app-armeabi-v7a-release.apk) 
+[**Download APK**](https://github.com/AbdullahUsman07/Flutter-Internship/edit/main/week_2/day_7/app-armeabi-v7a-release.apk) 
 
 ---
 
