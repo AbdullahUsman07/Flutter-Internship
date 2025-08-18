@@ -1,16 +1,54 @@
-# day_11
+# Day 11 - ToDo App  
 
-A new Flutter project.
+This is a **modern ToDo application** built with Flutter. The app allows users to manage their tasks by categorizing them into **Today's Tasks, Upcoming Tasks, and Completed Tasks**.  
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## 📌 Features  
+- Add new tasks with **title, description, and due date**  
+- Tasks are organized into three categories:
+  - ✅ Today's Tasks  
+  - ⏳ Upcoming Tasks  
+  - 🗂 Completed Tasks  
+- Mark tasks as completed or pending  
+- Dialog confirmation after adding a task  
+- **Modern UI** with a clean, professional look  
 
-A few resources to get you started if this is your first Flutter project:
+---
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## ⚙️ State Management  
+This app uses **GetX** for state management:  
+- `TaskController` manages the task list and provides helper methods.  
+- Reactive updates with `Obx` and controller methods.  
+- Lightweight and simple compared to Provider or Bloc.  
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+---
+
+## 🎨 UI Design  
+The UI was kept **modern and minimalistic**, focusing on:  
+- Simple color scheme with emphasis on readability  
+- Clear hierarchy between **headings (24–28)**, **subheadings (18)**, and **task items (14–16)**  
+- Floating action button for quick task addition  
+
+---
+
+## 🖼️ Screenshots  
+
+<p align="center">
+  <img src="../screenshots/landing.jpeg" alt="Landing Screen" width="150"/>
+  <img src="../screenshots/login.jpeg" alt="Login Screen" width="150"/>
+  <img src="../screenshots/signup.jpeg" alt="Signup Screen" width="150"/>
+  <img src="../screenshots/tasks.jpeg" alt="Task Screen" width="150"/>
+  <img src="../screenshots/taskdetail.jpeg" alt="Task Detail Screen" width="150"/>
+  <img src="../screenshots/addtask.jpeg" alt="Add Task Screen" width="150"/>
+</p>  
+
+---
+
+## 🔮 Future Work  
+For the future, the app will be extended with **Firebase integration** to make it a complete **CRUD app** with:  
+- User authentication  
+- Persistent storage of tasks  
+- Real-time sync across devices  
+
+---
