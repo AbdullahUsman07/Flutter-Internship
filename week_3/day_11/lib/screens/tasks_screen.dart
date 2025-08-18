@@ -1,5 +1,6 @@
 
 import 'package:day_11/controllers/task_controllers.dart';
+import 'package:day_11/screens/add_task_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../widgets/task_section.dart';
@@ -60,7 +61,7 @@ class TasksScreen extends StatelessWidget {
                 alignment: Alignment.bottomRight,
                 child: FloatingActionButton(
                   onPressed: () {
-                    // TODO: Navigate to Add Task screen
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => AddTaskScreen()));
                   },
                   backgroundColor: AppColors.primary,
                   child: const Icon(Icons.add, color: Colors.black),
