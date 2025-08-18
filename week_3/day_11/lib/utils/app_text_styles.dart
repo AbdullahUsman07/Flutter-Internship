@@ -10,6 +10,12 @@ class AppTextStyles {
     color: AppColors.textDark,
   );
 
+  static final TextStyle subHeading = GoogleFonts.plusJakartaSans(
+    fontSize: 20,
+    fontWeight: FontWeight.bold,
+    color: AppColors.textDark,
+  );
+
   static final TextStyle body = GoogleFonts.plusJakartaSans(
     fontSize: 16,
     fontWeight: FontWeight.normal,

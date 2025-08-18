@@ -110,6 +110,11 @@ class TaskController extends GetxController {
     categorizeTasks();
   }
 
+  void deleteTask(Task task) {
+    allTasks.remove(task);
+    categorizeTasks();
+  }
+
   bool isSameDate(DateTime a, DateTime b) {
     return a.year == b.year && a.month == b.month && a.day == b.day;
   }
