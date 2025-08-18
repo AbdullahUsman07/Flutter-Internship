@@ -1,5 +1,6 @@
 
-import 'package:day_11/screens/landing_screen.dart';
+
+import 'package:day_11/screens/tasks_screen.dart';
 import 'package:flutter/material.dart';
 
 
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'My App',
-      home: const LandingScreen(),
+      home: TasksScreen(),
     );
   }
 }
