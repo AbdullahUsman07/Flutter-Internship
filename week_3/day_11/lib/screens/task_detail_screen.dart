@@ -100,7 +100,7 @@ class TaskDetailScreen extends StatelessWidget {
                           child: const Icon(Icons.flag, color: Colors.black),
                         ),
                         const SizedBox(width: 12),
-                        Text("Normal",
+                        Text(task.priority,
                             style: AppTextStyles.body),
                       ],
                     ),
@@ -110,7 +110,7 @@ class TaskDetailScreen extends StatelessWidget {
                     // Category
                     Text("Category", style: AppTextStyles.subHeading),
                     const SizedBox(height: 5,),
-                    Text("Uncategorized",
+                    Text(task.category,
                         style: AppTextStyles.body),
                   ],
                 ),

@@ -1,5 +1,7 @@
 
 
+import 'package:day_11/models/task_model.dart';
+import 'package:day_11/screens/task_detail_screen.dart';
 import 'package:day_11/screens/tasks_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';

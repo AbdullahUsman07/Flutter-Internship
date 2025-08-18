@@ -1,5 +1,5 @@
-
 import 'package:day_11/models/task_model.dart';
+import 'package:day_11/widgets/custom_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/task_controllers.dart';
@@ -18,6 +18,9 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
 
   final TextEditingController titleController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
+
+  String selectedCategory = 'none';
+  String selectedPriority = 'low';
 
   DateTime? selectedDate;
 
@@ -38,55 +41,44 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
   }
 
   void _saveTask() {
-  if (titleController.text.trim().isEmpty || selectedDate == null) {
+    if (titleController.text.trim().isEmpty || selectedDate == null) {
+      Get.defaultDialog(
+        title: "Error",
+        middleText: "Title and Due Date are required",
+        textConfirm: "OK",
+        confirmTextColor: Colors.white,
+        onConfirm: () {
+          Get.back(); // close dialog
+        },
+      );
+      return;
+    }
+
+    taskController.addTask(
+      Task(
+        title: titleController.text.trim(),
+        description: descriptionController.text.trim(),
+        dueDate: selectedDate!,
+        category: selectedCategory,
+        priority: selectedPriority,
+      ),
+    );
+
+    // Show success dialog
     Get.defaultDialog(
-      title: "Error",
-      middleText: "Title and Due Date are required",
+      title: "Success",
+      middleText: "Task Added Successfully",
       textConfirm: "OK",
       confirmTextColor: Colors.white,
       onConfirm: () {
+        titleController.clear();
+        descriptionController.clear();
+        selectedDate = null; // reset
         Get.back(); // close dialog
+        Get.back(); // close Add Task Screen
       },
     );
-    return;
   }
-
-  taskController.addTask(Task(
-    title: titleController.text.trim(),
-    description: descriptionController.text.trim(),
-    dueDate: selectedDate!,
-  ));
-
-  // Show success dialog
-  Get.defaultDialog(
-    title: "Success",
-    middleText: "Task Added Successfully",
-    textConfirm: "OK",
-    confirmTextColor: Colors.white,
-    onConfirm: () {
-      titleController.clear();
-      descriptionController.clear();
-      selectedDate = null; // reset
-      Get.back(); // close dialog
-      Get.back(); // close Add Task Screen
-    },
-  );
-}
-  // void _saveTask() {
-  //   if (titleController.text.trim().isEmpty || selectedDate == null) {
-  //     Get.snackbar("Error", "Title and Due Date are required",
-  //         backgroundColor: Colors.redAccent, colorText: Colors.white);
-  //     return;
-  //   }
-
-  //   taskController.addTask(Task(
-  //     title: titleController.text.trim(),
-  //     description: descriptionController.text.trim(),
-  //     dueDate: selectedDate!,
-  //   ));
-
-  //   Get.back(); // close screen
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -143,7 +135,10 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
             GestureDetector(
               onTap: () => _pickDate(context),
               child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 18),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 18,
+                ),
                 decoration: BoxDecoration(
                   color: AppColors.background,
                   borderRadius: BorderRadius.circular(12),
@@ -161,6 +156,25 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                   ],
                 ),
               ),
+            ),
+            // Priority Dropdown
+            const SizedBox(height: 12),
+            CustomDropdown(
+              hintText: "Priority",
+              items: ["Low", "Medium", "High"],
+              onChanged: (value) {
+                selectedPriority = value ?? 'low';
+              },
+            ),
+
+            // Category Dropdown
+            const SizedBox(height: 12),
+            CustomDropdown(
+              hintText: "Category",
+              items: ["Work", "Personal", "Other"],
+              onChanged: (value) {
+                selectedCategory = value ?? 'none';
+              },
             ),
             const Spacer(),
 
@@ -190,7 +204,10 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                         borderRadius: BorderRadius.circular(12),
                       ),
                     ),
-                    child: const Text("Save", style: TextStyle(color: Colors.black)),
+                    child: const Text(
+                      "Save",
+                      style: TextStyle(color: Colors.black),
+                    ),
                   ),
                 ),
               ],
