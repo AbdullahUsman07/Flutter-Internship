@@ -37,10 +37,11 @@ The UI was kept **modern and minimalistic**, focusing on:
 <p align="center">
   <img src="../screenshots/landing.jpeg" alt="Landing Screen" width="150"/>
   <img src="../screenshots/login.jpeg" alt="Login Screen" width="150"/>
-  <img src="../screenshots/signup.jpeg" alt="Signup Screen" width="150"/>
-  <img src="../screenshots/tasks.jpeg" alt="Task Screen" width="150"/>
+  <img src="../screenshots/signup_new.jpeg" alt="Signup Screen" width="150"/>
+  <img src="../screenshots/tasks_new.jpeg" alt="Task Screen" width="150"/>
+  <img src="../screenshots/drawer.jpeg" alt="Drawer Screen" width="150"/>
   <img src="../screenshots/taskdetail.jpeg" alt="Task Detail Screen" width="150"/>
-  <img src="../screenshots/addtask.jpeg" alt="Add Task Screen" width="150"/>
+  <img src="../screenshots/addtask_new.jpeg" alt="Add Task Screen" width="150"/>
 </p>  
 
 ---
