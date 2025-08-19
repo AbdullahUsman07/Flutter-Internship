@@ -1,5 +1,6 @@
 
 
+import 'package:day_11/controllers/task_controllers.dart';
 import 'package:day_11/screens/task_detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -16,6 +17,7 @@ class TaskTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    int index = Get.find<TaskController>().getIndex(task);
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       margin: const EdgeInsets.only(bottom: 6),
@@ -38,7 +40,7 @@ class TaskTile extends StatelessWidget {
                 children: [
                   Obx(() => GestureDetector(
                         onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => TaskDetailScreen(task: task)));
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => TaskDetailScreen(index: index)));
                         },
                         child: Text(
                           task.title,

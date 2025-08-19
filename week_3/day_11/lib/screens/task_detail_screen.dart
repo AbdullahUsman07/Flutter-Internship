@@ -1,6 +1,7 @@
 
 import 'package:day_11/controllers/task_controllers.dart';
 import 'package:day_11/models/task_model.dart';
+import 'package:day_11/screens/edit_task_screen.dart';
 import 'package:day_11/utils/app_colors.dart';
 import 'package:day_11/utils/app_text_styles.dart';
 import 'package:flutter/material.dart';
@@ -8,12 +9,13 @@ import 'package:get/get.dart';
 
 
 class TaskDetailScreen extends StatelessWidget {
-  final Task task;
+  //final Task task;
 
-  const TaskDetailScreen({super.key, required this.task});
+  final int index;
+  const TaskDetailScreen({super.key, required this.index});
+  
 
-  void delTask(){
-    final TaskController taskController = Get.find();
+  void delTask(TaskController taskController, Task task){
     taskController.deleteTask(task);
     Get.defaultDialog(
       title: "",
@@ -29,6 +31,9 @@ class TaskDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TaskController taskController = Get.find();
+    final task = taskController.allTasks[index];
+
     return Scaffold(
       backgroundColor: AppColors.background,
       body: SafeArea(
@@ -126,7 +131,7 @@ class TaskDetailScreen extends StatelessWidget {
                   Expanded(
                     child: ElevatedButton(
                       onPressed: () {
-                        // TODO: Navigate to edit task screen
+                        Get.to(() => EditTaskScreen(task: task));
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.surface,
@@ -142,7 +147,7 @@ class TaskDetailScreen extends StatelessWidget {
                   Expanded(
                     child: ElevatedButton(
                       onPressed: () {
-                        delTask();
+                        delTask(taskController,task);
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.primary,

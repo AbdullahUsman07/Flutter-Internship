@@ -1,57 +1,4 @@
 
-// import 'package:day_11/models/task_model.dart';
-// import 'package:get/get.dart';
-
-
-// class TaskController extends GetxController {
-//   var todayTasks = <Task>[].obs;
-//   var upcomingTasks = <Task>[].obs;
-//   var completedTasks = <Task>[].obs;
-
-//   @override
-//   void onInit() {
-//     super.onInit();
-//     // Dummy data for now
-//     todayTasks.addAll([
-//       Task(title: "Grocery Shopping", dueDate: "Due 10/10"),
-//       Task(title: "Meeting with Alex", dueDate: "Due 10/10"),
-//       Task(title: "Project Presentation", dueDate: "Due 10/10"),
-//     ]);
-
-//     upcomingTasks.addAll([
-//       Task(title: "Book Appointment", dueDate: "Due 10/12"),
-//       Task(title: "Plan Vacation", dueDate: "Due 10/15"),
-//     ]);
-
-//     completedTasks.addAll([
-//       Task(title: "Morning Workout", dueDate: "Completed 10/09", isCompleted: true),
-//       Task(title: "Pay Bills", dueDate: "Completed 10/08", isCompleted: true),
-//     ]);
-//   }
-
-//   void toggleTask(Task task) {
-//     if (task.isCompleted.value) {
-//       completedTasks.remove(task);
-//       todayTasks.add(task..isCompleted.value = false);
-//     } else {
-//       todayTasks.remove(task);
-//       completedTasks.add(Task(
-//         title: task.title,
-//         dueDate: task.dueDate,
-//         isCompleted: true,
-//       ));
-//     }
-//   }
-
-//   bool isToday(String dueDate){
-//     final today = DateTime.now();
-//     final taskDate = DateTime.parse(dueDate);
-//     return today.year == taskDate.year &&
-//            today.month == taskDate.month &&
-//            today.day == taskDate.day;
-//   }
-// }
-
 
 import 'package:day_11/models/task_model.dart';
 import 'package:get/get.dart';
@@ -114,6 +61,20 @@ class TaskController extends GetxController {
     allTasks.remove(task);
     categorizeTasks();
   }
+
+  void updateTask(Task oldTask, Task newTask) {
+  int index = allTasks.indexOf(oldTask);
+  if (index != -1) {
+    allTasks[index] = newTask;
+    allTasks.refresh();
+    categorizeTasks();
+  }
+}
+ 
+ int getIndex(Task task) {
+    return allTasks.indexOf(task);
+  }
+
 
   bool isSameDate(DateTime a, DateTime b) {
     return a.year == b.year && a.month == b.month && a.day == b.day;
