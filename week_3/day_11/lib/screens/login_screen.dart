@@ -1,7 +1,7 @@
-
 import 'package:day_11/screens/sign_up_screen.dart';
 import 'package:day_11/utils/app_colors.dart';
 import 'package:day_11/utils/app_text_styles.dart';
+import 'package:day_11/widgets/custom_text_login_field.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -16,7 +16,7 @@ class LoginScreen extends StatelessWidget {
         children: [
           Column(
             children: [
-              const SizedBox(height: 50,),
+              const SizedBox(height: 50),
               Padding(
                 padding: const EdgeInsets.fromLTRB(16, 40, 16, 8),
                 child: Text(
@@ -27,92 +27,23 @@ class LoginScreen extends StatelessWidget {
               ),
 
               // Email field
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text("Email",
-                        style: AppTextStyles.body.copyWith(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                          color: AppColors.textDark,
-                        )),
-                    const SizedBox(height: 8),
-                    TextField(
-                      decoration: InputDecoration(
-                        hintText: "Enter your email",
-                        hintStyle: TextStyle(color: Color(0xFF637C88)),
-                        filled: true,
-                        fillColor: Colors.white,
-                        contentPadding: const EdgeInsets.symmetric(
-                            horizontal: 15, vertical: 18),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          borderSide:
-                              const BorderSide(color: Color(0xFFDCE2E5)),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          borderSide:
-                              const BorderSide(color: Color(0xFFDCE2E5)),
-                        ),
-                      ),
-                      style: AppTextStyles.body.copyWith(
-                        color: AppColors.textDark,
-                        fontSize: 16,
-                      ),
-                    ),
-                  ],
-                ),
+              CustomTextLoginFeild(
+                heading: "Email",
+                hintText: "Enter your email",
               ),
-
               // Password field
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text("Password",
-                        style: AppTextStyles.body.copyWith(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                          color: AppColors.textDark,
-                        )),
-                    const SizedBox(height: 8),
-                    TextField(
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        hintText: "Enter your password",
-                        hintStyle: TextStyle(color: Color(0xFF637C88)),
-                        filled: true,
-                        fillColor: Colors.white,
-                        contentPadding: const EdgeInsets.symmetric(
-                            horizontal: 15, vertical: 18),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          borderSide:
-                              const BorderSide(color: Color(0xFFDCE2E5)),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          borderSide:
-                              const BorderSide(color: Color(0xFFDCE2E5)),
-                        ),
-                      ),
-                      style: AppTextStyles.body.copyWith(
-                        color: AppColors.textDark,
-                        fontSize: 16,
-                      ),
-                    ),
-                  ],
-                ),
+              CustomTextLoginFeild(
+                heading: "Password",
+                hintText: "Enter your password",
+                obscureText: true,
               ),
-
+             
               // Login button
               Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 8,
+                ),
                 child: SizedBox(
                   width: double.infinity,
                   height: 48,
@@ -123,8 +54,7 @@ class LoginScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(12),
                       ),
                     ),
-                    onPressed: () {
-                    },
+                    onPressed: () {},
                     child: Text(
                       "Log In",
                       style: AppTextStyles.body.copyWith(
@@ -139,8 +69,10 @@ class LoginScreen extends StatelessWidget {
 
               // Continue with Google button
               Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 8,
+                ),
                 child: SizedBox(
                   width: double.infinity,
                   height: 48,
@@ -152,11 +84,12 @@ class LoginScreen extends StatelessWidget {
                       ),
                       side: BorderSide.none,
                     ),
-                    onPressed: () {
-                      
-                    },
-                    icon: const Icon(Icons.g_mobiledata,
-                        size: 28, color: AppColors.textDark),
+                    onPressed: () {},
+                    icon: const Icon(
+                      Icons.g_mobiledata,
+                      size: 28,
+                      color: AppColors.textDark,
+                    ),
                     label: Text(
                       "Continue with Google",
                       style: AppTextStyles.body.copyWith(
@@ -178,9 +111,7 @@ class LoginScreen extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) => const SignupPage(),
-                  ),
+                  MaterialPageRoute(builder: (context) => const SignupScreen()),
                 );
               },
               child: Text(

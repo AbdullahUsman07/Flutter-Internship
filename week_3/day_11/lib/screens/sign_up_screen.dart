@@ -1,10 +1,12 @@
 
+import 'package:day_11/screens/login_screen.dart';
+import 'package:day_11/widgets/custom_text_feild.dart';
 import 'package:flutter/material.dart';
 import '../utils/app_colors.dart';
 import '../utils/app_text_styles.dart';
 
-class SignupPage extends StatelessWidget {
-  const SignupPage({super.key});
+class SignupScreen extends StatelessWidget {
+  const SignupScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -41,49 +43,22 @@ class SignupPage extends StatelessWidget {
                 ),
               ),
 
+              // username field
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                child: CustomTextFeild(title: "Username"),
+              ),
+
               // Email field
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                child: TextField(
-                  decoration: InputDecoration(
-                    hintText: "Email",
-                    hintStyle: const TextStyle(color: Color(0xFF637C88)),
-                    filled: true,
-                    fillColor: const Color(0xFFF0F3F4),
-                    contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 18),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide.none,
-                    ),
-                  ),
-                  style: AppTextStyles.body.copyWith(
-                    color: AppColors.textDark,
-                    fontSize: 16,
-                  ),
-                ),
+                child: CustomTextFeild(title: "Email"),
               ),
 
               // Password field
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                child: TextField(
-                  obscureText: true,
-                  decoration: InputDecoration(
-                    hintText: "Password",
-                    hintStyle: const TextStyle(color: Color(0xFF637C88)),
-                    filled: true,
-                    fillColor: const Color(0xFFF0F3F4),
-                    contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 18),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide.none,
-                    ),
-                  ),
-                  style: AppTextStyles.body.copyWith(
-                    color: AppColors.textDark,
-                    fontSize: 16,
-                  ),
-                ),
+                child: CustomTextFeild(title: "Password"),
               ),
 
               // Google button
@@ -101,7 +76,7 @@ class SignupPage extends StatelessWidget {
                       side: BorderSide.none,
                     ),
                     onPressed: () {
-                      // TODO: Google sign up
+
                     },
                     child: Text(
                       "Continue with Google",
@@ -148,14 +123,19 @@ class SignupPage extends StatelessWidget {
           // Bottom text
           Padding(
             padding: const EdgeInsets.only(bottom: 20),
-            child: Text(
-              "Already have an account? Sign In",
-              textAlign: TextAlign.center,
-              style: AppTextStyles.body.copyWith(
-                fontSize: 14,
-                fontWeight: FontWeight.normal,
-                color: const Color(0xFF637C88),
-                decoration: TextDecoration.underline,
+            child: InkWell(
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginScreen()));
+              },
+              child: Text(
+                "Already have an account? Sign In",
+                textAlign: TextAlign.center,
+                style: AppTextStyles.body.copyWith(
+                  fontSize: 14,
+                  fontWeight: FontWeight.normal,
+                  color: const Color(0xFF637C88),
+                  decoration: TextDecoration.underline,
+                ),
               ),
             ),
           ),
@@ -164,3 +144,4 @@ class SignupPage extends StatelessWidget {
     );
   }
 }
+
