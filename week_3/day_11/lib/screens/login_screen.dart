@@ -1,12 +1,43 @@
 import 'package:day_11/screens/sign_up_screen.dart';
+import 'package:day_11/screens/tasks_screen.dart';
 import 'package:day_11/utils/app_colors.dart';
 import 'package:day_11/utils/app_text_styles.dart';
 import 'package:day_11/widgets/custom_text_login_field.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+    Future<void> _loginUser() async {
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailController.text.trim(),
+        password: passwordController.text.trim(),
+      );
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => TasksScreen()),
+      );
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Login successful")),
+      );
+    } on FirebaseAuthException catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(e.message ?? "Login failed")),
+      );
+    }
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,11 +61,13 @@ class LoginScreen extends StatelessWidget {
               CustomTextLoginFeild(
                 heading: "Email",
                 hintText: "Enter your email",
+                controller: emailController,
               ),
               // Password field
               CustomTextLoginFeild(
                 heading: "Password",
                 hintText: "Enter your password",
+                controller: passwordController,
                 obscureText: true,
               ),
              
@@ -54,7 +87,7 @@ class LoginScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(12),
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: _loginUser,
                     child: Text(
                       "Log In",
                       style: AppTextStyles.body.copyWith(
