@@ -21,16 +21,13 @@ class _SignupScreenState extends State<SignupScreen> {
 
   final _auth = AuthService();
 
-    Future<void> _signUp() async {
-
+  Future<void> _signUp() async {
     try {
-      // await _auth.createUserWithEmailAndPassword(
-      //   email: emailController.text.trim(),
-      //   password: passwordController.text.trim(),
-      // );
-      _auth.signUp(usernameController.text.trim(),
+      _auth.signUp(
+        usernameController.text.trim(),
         emailController.text.trim(),
-        passwordController.text.trim());
+        passwordController.text.trim(),
+      );
 
       Navigator.pushReplacement(
         context,
@@ -40,15 +37,12 @@ class _SignupScreenState extends State<SignupScreen> {
         const SnackBar(content: Text("Account created successfully")),
       ); // Go back to login after signup
     } on FirebaseAuthException catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Error: ${e.message}")),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text("Error: ${e.message}")));
     }
   }
 
-  
-
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -1,6 +1,7 @@
 
 import 'package:day_11/controllers/task_controllers.dart';
 import 'package:day_11/screens/add_task_screen.dart';
+import 'package:day_11/widgets/app_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../widgets/task_section.dart';
@@ -16,11 +17,19 @@ class TasksScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.background,
+      drawer: AppDrawer(),
       body: SafeArea(
         child: Column(
           children: [
-            // Header
-            Padding(
+            Row(
+              children: [
+                Builder(
+                  builder: (context) => IconButton(onPressed: (){
+                    Scaffold.of(context).openDrawer();
+                  }, icon: Icon(Icons.menu)),
+                ),
+                const SizedBox(width: 100,),
+              Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
               child: Center(
                 child: Text(
@@ -31,6 +40,9 @@ class TasksScreen extends StatelessWidget {
                 ),
               ),
             ),
+            ],
+            ),
+            
 
             Expanded(
               child:ListView(
