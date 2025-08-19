@@ -27,6 +27,8 @@ class Task {
       'description': description,
       'dueDate': dueDate.toIso8601String(),
       'isCompleted': isCompleted.value,
+      'category': category,
+      'priority': priority
     };
   }
 
@@ -37,6 +39,8 @@ class Task {
       description: json['description'] ?? '',
       dueDate: DateTime.parse(json['dueDate']),
       isCompleted: json['isCompleted'] ?? false,
+      category: json['category'] ?? 'none',
+      priority: json['priority'] ?? 'low',
     );
   }
   

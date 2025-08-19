@@ -19,8 +19,8 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
   final TextEditingController titleController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
 
-  String selectedCategory = 'none';
-  String selectedPriority = 'low';
+  String? selectedCategory;
+  String? selectedPriority;
 
   DateTime? selectedDate;
 
@@ -59,8 +59,8 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
         title: titleController.text.trim(),
         description: descriptionController.text.trim(),
         dueDate: selectedDate!,
-        category: selectedCategory,
-        priority: selectedPriority,
+        category: selectedCategory!,
+        priority: selectedPriority!,
       ),
     );
 
@@ -163,7 +163,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
               hintText: "Priority",
               items: ["Low", "Medium", "High"],
               onChanged: (value) {
-                selectedPriority = value ?? 'low';
+                selectedPriority = value;
               },
             ),
 
@@ -173,7 +173,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
               hintText: "Category",
               items: ["Work", "Personal", "Other"],
               onChanged: (value) {
-                selectedCategory = value ?? 'none';
+                selectedCategory = value;
               },
             ),
             const Spacer(),

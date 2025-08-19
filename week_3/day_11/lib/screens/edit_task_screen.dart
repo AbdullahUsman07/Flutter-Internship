@@ -8,7 +8,7 @@ import '../utils/app_colors.dart';
 import '../utils/app_text_styles.dart';
 
 class EditTaskScreen extends StatefulWidget {
-  final Task task; // Pass the task to edit
+  final Task task; 
 
   const EditTaskScreen({super.key, required this.task});
 
@@ -69,6 +69,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
 
     // Update task in controller
     final updatedTask = Task(
+      id: widget.task.id,
       title: titleController.text.trim(),
       description: descriptionController.text.trim(),
       dueDate: selectedDate!,

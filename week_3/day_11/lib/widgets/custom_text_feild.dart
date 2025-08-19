@@ -7,16 +7,19 @@ class CustomTextFeild extends StatelessWidget {
   const CustomTextFeild({
     super.key,
     required this.title,
-    this.obscureText = true,
+    this.obscureText = false,
+    this.controller,
   });
 
   final String title;
   final bool obscureText;
+  final TextEditingController? controller;
 
   @override
   Widget build(BuildContext context) {
     return TextField(
       obscureText: obscureText,
+      controller: controller,
       decoration: InputDecoration(
         hintText: title,
         hintStyle: const TextStyle(color: Color(0xFF637C88)),

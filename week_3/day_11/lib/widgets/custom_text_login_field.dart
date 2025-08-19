@@ -10,11 +10,13 @@ class CustomTextLoginFeild extends StatelessWidget {
     required this.heading,
     required this.hintText,
     this.obscureText = false,
+    this.controller,
   });
 
   final String heading;
   final String hintText;
   final bool obscureText;
+  final TextEditingController? controller;
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +36,7 @@ class CustomTextLoginFeild extends StatelessWidget {
           const SizedBox(height: 8),
           TextField(
             obscureText: obscureText,
+            controller: controller,
             decoration: InputDecoration(
               hintText: hintText,
               hintStyle: TextStyle(color: Color(0xFF637C88)),

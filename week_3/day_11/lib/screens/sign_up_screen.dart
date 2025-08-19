@@ -1,5 +1,6 @@
 import 'package:day_11/screens/login_screen.dart';
 import 'package:day_11/screens/tasks_screen.dart';
+import 'package:day_11/services/auth_service.dart';
 import 'package:day_11/widgets/custom_text_feild.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -18,15 +19,19 @@ class _SignupScreenState extends State<SignupScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final _auth = AuthService();
 
     Future<void> _signUp() async {
 
     try {
-      await _auth.createUserWithEmailAndPassword(
-        email: emailController.text.trim(),
-        password: passwordController.text.trim(),
-      );
+      // await _auth.createUserWithEmailAndPassword(
+      //   email: emailController.text.trim(),
+      //   password: passwordController.text.trim(),
+      // );
+      _auth.signUp(usernameController.text.trim(),
+        emailController.text.trim(),
+        passwordController.text.trim());
+
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => TasksScreen()),
