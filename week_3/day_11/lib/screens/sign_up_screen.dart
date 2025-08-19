@@ -85,7 +85,6 @@ class _SignupScreenState extends State<SignupScreen> {
                 ),
               ),
 
-              // username field
               Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 16,
@@ -97,7 +96,6 @@ class _SignupScreenState extends State<SignupScreen> {
                 ),
               ),
 
-              // Email field
               Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 16,
@@ -109,7 +107,6 @@ class _SignupScreenState extends State<SignupScreen> {
                 ),
               ),
 
-              // Password field
               Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 16,
@@ -118,6 +115,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 child: CustomTextFeild(
                   title: "Password",
                   controller: passwordController,
+                  obscureText: true,
                 ),
               ),
 
