@@ -10,11 +10,13 @@ class TaskSection extends StatelessWidget {
   final String title;
   final RxList<Task> tasks;
   final Function(Task)? onToggle;
+  final bool isOverdue;
 
   const TaskSection({
     Key? key,
     required this.title,
     required this.tasks,
+    this.isOverdue = false,
     this.onToggle,
   }) : super(key: key);
 
@@ -39,6 +41,7 @@ class TaskSection extends StatelessWidget {
                 (task) => TaskTile(
                   task: task,
                   onChanged: () => onToggle?.call(task),
+                  isOverdue: isOverdue,
                 ),
               ).toList(),
             ],

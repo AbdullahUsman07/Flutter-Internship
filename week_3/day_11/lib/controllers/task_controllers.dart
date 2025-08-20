@@ -9,6 +9,7 @@ class TaskController extends GetxController {
   var todayTasks = <Task>[].obs;
   var upcomingTasks = <Task>[].obs;
   var completedTasks = <Task>[].obs;
+  var overdueTasks = <Task>[].obs;
 
   final TaskService _taskService = TaskService();
   StreamSubscription? _taskSubscription;
@@ -62,6 +63,14 @@ class TaskController extends GetxController {
     );
 
     completedTasks.assignAll(allTasks.where((task) => task.isCompleted.value));
+
+    overdueTasks.assignAll(
+      allTasks.where(
+        (task) =>
+            !task.isCompleted.value &&
+            task.dueDate.isBefore(DateTime(today.year, today.month, today.day)),
+      ),
+    );
   }
 
   Future<void> toggleTask(Task task) async {

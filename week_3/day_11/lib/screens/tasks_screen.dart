@@ -62,6 +62,12 @@ class TasksScreen extends StatelessWidget {
                       tasks: taskController.completedTasks,
                       onToggle: taskController.toggleTask,
                     ),
+                    TaskSection(
+                      title: "Overdue Tasks",
+                      tasks: taskController.overdueTasks,
+                      onToggle: taskController.toggleTask,
+                      isOverdue: true,
+                    ),
                   ],
                 ),
               ),

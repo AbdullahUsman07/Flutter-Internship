@@ -4,7 +4,6 @@ import 'package:day_11/utils/app_colors.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({super.key});

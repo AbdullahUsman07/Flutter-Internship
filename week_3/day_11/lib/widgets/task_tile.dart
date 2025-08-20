@@ -11,9 +11,9 @@ import '../utils/app_text_styles.dart';
 class TaskTile extends StatelessWidget {
   final Task task;
   final VoidCallback? onChanged;
+  final bool isOverdue;
 
-  const TaskTile({Key? key, required this.task, this.onChanged})
-      : super(key: key);
+   const TaskTile({super.key, required this.task, this.onChanged, this.isOverdue = false});
 
   @override
   Widget build(BuildContext context) {
@@ -66,12 +66,22 @@ class TaskTile extends StatelessWidget {
                 height: 10,
                 width: 10,
                 decoration: BoxDecoration(
-                  color: task.isCompleted.value ? Colors.grey : Colors.green,
+                  color: _getStatusColor(),
                   shape: BoxShape.circle,
                 ),
               )),
         ],
       ),
     );
+  }
+
+  Color _getStatusColor(){
+    if(task.isCompleted.value) {
+      return Colors.grey;
+    } else if (isOverdue == true) {
+      return Colors.red;
+    } else {
+      return Colors.green;
+    }
   }
 }
