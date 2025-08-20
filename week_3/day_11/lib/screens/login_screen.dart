@@ -1,5 +1,6 @@
 import 'package:day_11/screens/sign_up_screen.dart';
 import 'package:day_11/screens/tasks_screen.dart';
+import 'package:day_11/services/google_auth_service.dart';
 import 'package:day_11/utils/app_colors.dart';
 import 'package:day_11/utils/app_text_styles.dart';
 import 'package:day_11/widgets/custom_text_login_field.dart';
@@ -34,6 +35,23 @@ class _LoginScreenState extends State<LoginScreen> {
     } on FirebaseAuthException catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(e.message ?? "Login failed")),
+      );
+    }
+  }
+
+    Future<void> _loginWithGoogle() async {
+    final user = await GoogleSignInService.signInWithGoogle();
+    if (user != null) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => TasksScreen()),
+      );
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Google login successful")),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Google login cancelled or failed")),
       );
     }
   }
@@ -117,7 +135,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       side: BorderSide.none,
                     ),
-                    onPressed: () {},
+                    onPressed: _loginWithGoogle,
                     icon: const Icon(
                       Icons.g_mobiledata,
                       size: 28,

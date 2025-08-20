@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:day_11/screens/landing_screen.dart';
+import 'package:day_11/services/google_auth_service.dart';
 import 'package:day_11/utils/app_colors.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -46,6 +47,7 @@ class AppDrawer extends StatelessWidget {
                 title: const Text("Logout"),
                 onTap: () async {
                   await FirebaseAuth.instance.signOut();
+                  await GoogleSignInService.signOut();
                   Get.deleteAll();
                   Navigator.of(context).pushAndRemoveUntil(
                     MaterialPageRoute(builder: (context) => LandingScreen()),
