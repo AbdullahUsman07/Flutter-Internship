@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:day_11/models/task_model.dart';
+import 'package:day_11/services/notification_service.dart';
 import 'package:day_11/services/task_service.dart';
 import 'package:get/get.dart';
 
@@ -12,6 +13,7 @@ class TaskController extends GetxController {
   var overdueTasks = <Task>[].obs;
 
   final TaskService _taskService = TaskService();
+  final NotificationService _notificationService = NotificationService();
   StreamSubscription? _taskSubscription;
 
   @override
@@ -76,22 +78,78 @@ class TaskController extends GetxController {
   Future<void> toggleTask(Task task) async {
     task.isCompleted.value = !task.isCompleted.value;
     await _taskService.updateTask(task);
+
+     if (task.isCompleted.value) {
+      await _notificationService.cancelTaskSchedules(task.id!);
+    } else {
+      // Re-schedule notifications if re-activated
+      await _notificationService.scheduleDueToday(
+        taskId: task.id!,
+        taskTitle: task.title,
+        dueDate: task.dueDate,
+      );
+      await _notificationService.scheduleOverdue(
+        taskId: task.id!,
+        taskTitle: task.title,
+        dueDate: task.dueDate,
+      );
+    }
+
     categorizeTasks();
   }
 
   Future<void> addTask(Task task) async {
     await _taskService.addTask(task);
+
+    // show the immediate notification after adding the task
+    await _notificationService.showTaskAdded(task.title);
+
+    // Schedule due + overdue notifications
+    await _notificationService.scheduleDueToday(
+      taskId: task.id!,
+      taskTitle: task.title,
+      dueDate: task.dueDate,
+    );
+    await _notificationService.scheduleOverdue(
+      taskId: task.id!,
+      taskTitle: task.title,
+      dueDate: task.dueDate,
+    );
+
     loadTasks();
   }
 
   Future<void> deleteTask(Task task) async {
     await _taskService.deleteTask(task.id!);
     allTasks.remove(task);
+
+    // Cancel any scheduled notifications for this task
+    await _notificationService.cancelTaskSchedules(task.id!);
+
+    // Show immediate notification
+    await _notificationService.showTaskDeleted(task.title);
+
     categorizeTasks();
   }
 
   Future<void> updateTask(Task oldTask, Task newTask) async {
     await _taskService.updateTask(newTask);
+
+    // Cancel old notifications
+    await _notificationService.cancelTaskSchedules(oldTask.id!);
+
+    // Re-schedule for updated task
+    await _notificationService.scheduleDueToday(
+      taskId: newTask.id!,
+      taskTitle: newTask.title,
+      dueDate: newTask.dueDate,
+    );
+    await _notificationService.scheduleOverdue(
+      taskId: newTask.id!,
+      taskTitle: newTask.title,
+      dueDate: newTask.dueDate,
+    );
+    
     loadTasks();
   }
 
