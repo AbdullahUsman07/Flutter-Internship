@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:day_11/services/analytics_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -22,7 +23,6 @@ class GoogleSignInService {
       final userCredential = await _auth.signInWithCredential(credential);
       final user = userCredential.user;
 
-     
       if (user != null) {
         final userDoc = _firestore.collection("users").doc(user.uid);
         final docSnapshot = await userDoc.get();
@@ -36,6 +36,11 @@ class GoogleSignInService {
         }
       }
 
+      // now adding the data in the firebase-analytics
+      await AnalyticsService.setUserId(user!.uid);
+      await AnalyticsService.setAuthMethod("google");
+      await AnalyticsService.logLogin(method: "google");
+
       return user;
     } catch (e) {
       print("Google Sign-In failed: $e");
@@ -46,5 +51,9 @@ class GoogleSignInService {
   static Future<void> signOut() async {
     await _googleSignIn.signOut();
     await _auth.signOut();
+
+    // clearing the user data from firebase-analytics
+    await AnalyticsService.clearUserId();
+    await AnalyticsService.logLogout();
   }
 }

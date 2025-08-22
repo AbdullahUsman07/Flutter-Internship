@@ -1,5 +1,6 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:day_11/services/analytics_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthService {
@@ -20,6 +21,12 @@ class AuthService {
           "createdAt": DateTime.now(),
         });
       }
+
+      // adding the data to firebase-analytics
+      await AnalyticsService.setUserId(user!.uid);
+      await AnalyticsService.setAuthMethod("email_password");
+      await AnalyticsService.logSignUp(method: "email_password");
+
       return user;
     } catch (e) {
       throw Exception("Sign Up Failed: $e");
@@ -30,6 +37,13 @@ class AuthService {
     try {
       UserCredential result = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
+      
+
+      // after successful login keeping the track of users
+      await AnalyticsService.setUserId(result.user!.uid);
+      await AnalyticsService.setAuthMethod("email_password");
+      await AnalyticsService.logLogin(method: "email_password");
+
       return result.user;
     } catch (e) {
       throw Exception("Login Failed: $e");
@@ -39,6 +53,10 @@ class AuthService {
 
   Future<void> signOut() async {
     await _auth.signOut();
+
+    // clearing the user data from firebase-analytics
+    await AnalyticsService.clearUserId();
+    await AnalyticsService.logLogout();
   }
 
   Stream<User?> get userChanges => _auth.authStateChanges();

@@ -1,5 +1,3 @@
-
-
 import 'package:day_11/services/auth_gate.dart';
 import 'package:day_11/services/notification_service.dart';
 import 'package:flutter/material.dart';
@@ -13,8 +11,9 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
+  
   await NotificationService().init();
+
   runApp(MyApp());
 }
 
