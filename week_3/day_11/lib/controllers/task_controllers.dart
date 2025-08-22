@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:day_11/models/task_model.dart';
+import 'package:day_11/services/analytics_service.dart';
 import 'package:day_11/services/notification_service.dart';
 import 'package:day_11/services/task_service.dart';
 import 'package:get/get.dart';
@@ -76,10 +77,26 @@ class TaskController extends GetxController {
   }
 
   Future<void> toggleTask(Task task) async {
-    task.isCompleted.value = !task.isCompleted.value;
+    final nowCompleted = !task.isCompleted.value;
+    task.isCompleted.value = nowCompleted;
     await _taskService.updateTask(task);
 
-     if (task.isCompleted.value) {
+    // updating the analytics
+    if (nowCompleted) {
+      await AnalyticsService.taskCompleted(
+        taskId: task.id!,
+        completedAt: DateTime.now(),
+      );
+    } else {
+      await AnalyticsService.taskUpdated(
+        taskId: task.id!,
+        changedTitle: false,
+        changedDueDate: false,
+        changedPriority: false,
+      );
+    }
+
+    if (nowCompleted) {
       await _notificationService.cancelTaskSchedules(task.id!);
     } else {
       // Re-schedule notifications if re-activated
@@ -99,7 +116,15 @@ class TaskController extends GetxController {
   }
 
   Future<void> addTask(Task task) async {
-    await _taskService.addTask(task);
+    final id = await _taskService.addTask(task);
+    task.id = id;
+
+    // adding the task in the analytics
+    await AnalyticsService.taskCreated(
+      taskId: id,
+      priority: task.priority,
+      dueDate: task.dueDate,
+    );
 
     // show the immediate notification after adding the task
     await _notificationService.showTaskAdded(task.title);
@@ -123,6 +148,9 @@ class TaskController extends GetxController {
     await _taskService.deleteTask(task.id!);
     allTasks.remove(task);
 
+    // analytics
+    await AnalyticsService.taskDeleted(taskId: task.id!);
+
     // Cancel any scheduled notifications for this task
     await _notificationService.cancelTaskSchedules(task.id!);
 
@@ -134,6 +162,18 @@ class TaskController extends GetxController {
 
   Future<void> updateTask(Task oldTask, Task newTask) async {
     await _taskService.updateTask(newTask);
+
+    // analytics
+    final changedTitle = oldTask.title != newTask.title;
+    final changedDueDate = oldTask.dueDate != newTask.dueDate;
+    final changedPriority = oldTask.priority != newTask.priority;
+
+    await AnalyticsService.taskUpdated(
+      taskId: newTask.id!,
+      changedTitle: changedTitle,
+      changedDueDate: changedDueDate,
+      changedPriority: changedPriority,
+    );
 
     // Cancel old notifications
     await _notificationService.cancelTaskSchedules(oldTask.id!);
@@ -149,7 +189,7 @@ class TaskController extends GetxController {
       taskTitle: newTask.title,
       dueDate: newTask.dueDate,
     );
-    
+
     loadTasks();
   }
 

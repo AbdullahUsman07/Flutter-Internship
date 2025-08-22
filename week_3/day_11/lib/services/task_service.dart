@@ -15,12 +15,12 @@ class TaskService {
   }
 
   // Create Task
-  Future<void> addTask(Task task) async {
+  Future<String> addTask(Task task) async {
     final docRef = await _taskCollection().add(task.toJson());
     // automated id assigned
     await docRef.update({'id': docRef.id});
 
-
+    return docRef.id;
   }
 
   //  Get all tasks 
@@ -43,5 +43,5 @@ class TaskService {
     await _taskCollection().doc(taskId).delete();
   }
 
-  
+
 }
